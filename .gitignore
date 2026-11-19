@@ -1,0 +1,17 @@
+__pycache__/
+*.egg-info/
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+outputs/
+.env
+.env.*
+!.env.example
+.DS_Store
+# team tooling
+.team/
+tasks/
+SETUP-LOG.md
+SETUP-PLAYBOOK.html
+# price cache: public repo, so Yahoo data is not redistributed
+data/cache/*.csv.gz

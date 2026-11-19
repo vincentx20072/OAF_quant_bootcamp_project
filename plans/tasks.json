@@ -1,0 +1,165 @@
+[
+  {
+    "id": "T01",
+    "slug": "scaffold",
+    "title": "Contract, module stubs, synthetic pipeline, tests",
+    "role": "dev1",
+    "scope": [
+      "**"
+    ],
+    "depends": [],
+    "done_when": "pip install -e .[dev] and python -m pytest -q pass; run_all.py --synthetic writes outputs/results.json",
+    "priority": "P0"
+  },
+  {
+    "id": "T02",
+    "slug": "data-loader",
+    "title": "yfinance download with auto_adjust, cache, data checks",
+    "role": "dev1",
+    "scope": [
+      "src/oi/data.py",
+      "tests/test_core.py",
+      "data/cache/"
+    ],
+    "depends": [
+      "T01"
+    ],
+    "done_when": "load_prices() returns Prices for UNIVERSE from 2010; cache reloads offline; check_prices() reports gaps and zero/negative prices",
+    "priority": "P0"
+  },
+  {
+    "id": "T03",
+    "slug": "core-split",
+    "title": "Split, cumulative, equal-weight basket, gap by year, stats",
+    "role": "dev1",
+    "scope": [
+      "src/oi/decompose.py",
+      "src/oi/metrics.py",
+      "tests/test_core.py"
+    ],
+    "depends": [
+      "T01"
+    ],
+    "done_when": "overnight+intraday equals daily to 1e-12; summary() gives mean/vol/sharpe per series; tests pass",
+    "priority": "P0"
+  },
+  {
+    "id": "T04",
+    "slug": "run-all-real",
+    "title": "Pipeline on real data, results.json and headline chart",
+    "role": "dev1",
+    "scope": [
+      "scripts/run_all.py"
+    ],
+    "depends": [
+      "T02",
+      "T03"
+    ],
+    "done_when": "python scripts/run_all.py writes outputs/results.json and outputs/figures/cumulative_split.png from real data",
+    "priority": "P0"
+  },
+  {
+    "id": "T05",
+    "slug": "factor-split",
+    "title": "Factor ETF excess-over-SPY split from common start",
+    "role": "dev3",
+    "scope": [
+      "src/oi/factors.py",
+      "tests/test_strategy.py"
+    ],
+    "depends": [
+      "T03"
+    ],
+    "done_when": "excess_split() returns overnight/intraday excess per factor ETF from common_start(); stats in results.json under factors",
+    "priority": "P1"
+  },
+  {
+    "id": "T06",
+    "slug": "strategies",
+    "title": "Four strategies: all-day, overnight leg, intraday leg, switching",
+    "role": "dev3",
+    "scope": [
+      "src/oi/strategy.py",
+      "tests/test_strategy.py"
+    ],
+    "depends": [
+      "T05"
+    ],
+    "done_when": "run_all() returns 4 StrategyResult with daily gross returns and trades per day; switching trades 2/day; tests pass",
+    "priority": "P1"
+  },
+  {
+    "id": "T07",
+    "slug": "costs",
+    "title": "Cost sweep 0/1/2/5 bp and break-even cost",
+    "role": "dev3",
+    "scope": [
+      "src/oi/strategy.py",
+      "tests/test_strategy.py"
+    ],
+    "depends": [
+      "T06"
+    ],
+    "done_when": "cost_sweep() gives Sharpe per strategy per cost; breakeven_bp() solves Sharpe=0 for switching; in results.json",
+    "priority": "P1"
+  },
+  {
+    "id": "T08",
+    "slug": "momentum-wml",
+    "title": "P2: 12-1 momentum WML on large-caps, split overnight/intraday",
+    "role": "dev2",
+    "scope": [
+      "src/oi/momentum.py",
+      "tests/test_momentum.py"
+    ],
+    "depends": [
+      "T03"
+    ],
+    "done_when": "wml_split() returns SplitReturns for WML; a test proves ranks use only prior month-end data",
+    "priority": "P2"
+  },
+  {
+    "id": "T09",
+    "slug": "charts",
+    "title": "All figures from results and series",
+    "role": "dev4",
+    "scope": [
+      "src/oi/plots.py",
+      "tests/test_plots.py"
+    ],
+    "depends": [
+      "T04",
+      "T07"
+    ],
+    "done_when": "five PNGs in outputs/figures/ with titles, units and source note; test_plots passes",
+    "priority": "P0"
+  },
+  {
+    "id": "T10",
+    "slug": "deck",
+    "title": "6-slide deck + 2 backup slides and speaker notes",
+    "role": "dev4",
+    "scope": [
+      "deck/"
+    ],
+    "depends": [
+      "T09"
+    ],
+    "done_when": "deck/ has the exported PDF; every number matches results.json at tag v1-numbers",
+    "priority": "P0"
+  },
+  {
+    "id": "T11",
+    "slug": "rehearse-send",
+    "title": "Timed rehearsal and send the deck",
+    "role": "dev4",
+    "scope": [
+      "deck/"
+    ],
+    "depends": [
+      "T10"
+    ],
+    "done_when": "rehearsal under 5:00; deck emailed by 2026-12-02 12:00",
+    "priority": "P0"
+  }
+]

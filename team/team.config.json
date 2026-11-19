@@ -1,0 +1,148 @@
+{
+  "project": "overnight-intraday",
+  "project_name": "Overnight vs Intraday",
+  "event": "OAF Quant Bootcamp mini-project",
+  "gh_owner": "vincentx20072",
+  "repo": "OAF_quant_bootcamp_project",
+  "integration_branch": "develop",
+  "branch_template": "{person}/{agent}/{slug}",
+  "board": "github-issues",
+  "rooms": [
+    {
+      "name": "overnight-intraday",
+      "purpose": "plan, task claims, START/COMMIT/PR/BLOCKED/DONE, CONTRACT"
+    },
+    {
+      "name": "overnight-intraday-data",
+      "purpose": "data quality, yfinance quirks, universe choices"
+    },
+    {
+      "name": "overnight-intraday-analysis",
+      "purpose": "results, strategy and cost findings"
+    },
+    {
+      "name": "overnight-intraday-deck",
+      "purpose": "slides, charts, talk script"
+    }
+  ],
+  "roles": [
+    {
+      "id": "dev1",
+      "title": "lead, data and core",
+      "person": "vincent",
+      "owns": [
+        "src/oi/contract.py",
+        "src/oi/data.py",
+        "src/oi/decompose.py",
+        "src/oi/metrics.py",
+        "scripts/",
+        "tests/test_core.py",
+        "pyproject.toml"
+      ]
+    },
+    {
+      "id": "dev2",
+      "title": "momentum (P2)",
+      "person": "TBD",
+      "owns": [
+        "src/oi/momentum.py",
+        "tests/test_momentum.py"
+      ]
+    },
+    {
+      "id": "dev3",
+      "title": "factors and strategy",
+      "person": "TBD",
+      "owns": [
+        "src/oi/factors.py",
+        "src/oi/strategy.py",
+        "tests/test_strategy.py"
+      ]
+    },
+    {
+      "id": "dev4",
+      "title": "charts, deck, presenting",
+      "person": "TBD",
+      "owns": [
+        "src/oi/plots.py",
+        "tests/test_plots.py",
+        "deck/"
+      ]
+    }
+  ],
+  "hot_files": [
+    "src/oi/contract.py",
+    "pyproject.toml",
+    "scripts/run_all.py",
+    "NOTES.md"
+  ],
+  "protected_paths": [
+    ".env",
+    ".env.*",
+    "**/*.key",
+    "**/secrets.*",
+    ".team/**"
+  ],
+  "contract_file": "src/oi/contract.py",
+  "stack": {
+    "language": "python",
+    "framework": "pandas",
+    "package_manager": "pip",
+    "install_cmd": "python -m pip install -e \".[dev]\"",
+    "dev_cmd": "python scripts/run_all.py --synthetic",
+    "build_cmd": "python -m compileall -q src scripts",
+    "test_cmd": "python -m pytest -q"
+  },
+  "deadlines": [
+    {
+      "at": "2026-11-20T18:00",
+      "what": "Group roster sent to committee",
+      "hard": false
+    },
+    {
+      "at": "2026-11-22T20:00",
+      "what": "End-to-end loop on real data",
+      "hard": false
+    },
+    {
+      "at": "2026-11-27T20:00",
+      "what": "P1 analyses done",
+      "hard": false
+    },
+    {
+      "at": "2026-11-28T18:00",
+      "what": "Feature freeze, tag v1-numbers",
+      "hard": false
+    },
+    {
+      "at": "2026-11-29T20:00",
+      "what": "Final charts",
+      "hard": false
+    },
+    {
+      "at": "2026-11-30T20:00",
+      "what": "Deck draft",
+      "hard": false
+    },
+    {
+      "at": "2026-12-01T19:00",
+      "what": "Timed rehearsal",
+      "hard": false
+    },
+    {
+      "at": "2026-12-02T12:00",
+      "what": "Deck emailed (internal)",
+      "hard": false
+    },
+    {
+      "at": "2026-12-02T23:59",
+      "what": "Deck due to committee",
+      "hard": true
+    },
+    {
+      "at": "2026-12-03T09:00",
+      "what": "Presentation (date and time TBC)",
+      "hard": true
+    }
+  ]
+}
