@@ -1,6 +1,6 @@
 # PLAN — Overnight vs Intraday
 
-> **Repo:** everything lives in one public repo, `vincentx20072/OAF_quant_bootcamp_project` (code at the root, team tooling in `team/`, `.claude/`, `plans/`, `prompts/`). The handoff YAML below still names the slug `overnight-intraday`; `team/team.config.json` is the live config.
+> **Repo:** everything lives in one public repo, `vincentx20072/OAF_quant_bootcamp_project` (code at the root, plan in `plans/`, background notes in `docs/research/`).
 
 Prepared 2026-11-19 14:00 Europe/London for the OAF Quant Bootcamp mini-project. Source documents: `Quant_Bootcamp_Mini-Project.pdf` (the brief, "QB" below) and the group's one-page brief "Mini-Project Brief: Overnight vs Intraday Returns" (the doc, "BRIEF" below).
 

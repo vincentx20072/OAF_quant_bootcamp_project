@@ -1,6 +1,6 @@
 # Architecture (settled — do not re-decide)
 
-Full plan: `plans/PLAN.md`. Tasks: `plans/tasks.json` (mirrored as issues on the board).
+Full plan: `plans/PLAN.md` (task list in §9).
 
 ## Question
 Where does the US market earn its return: overnight (close → open) or intraday (open → close)? Can a time-of-day factor switch beat holding the factors all day, after costs?

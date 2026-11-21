@@ -1,5 +1,3 @@
-Read `AGENTS.md` first. Follow the `team-hub` skill (board protocol) and the `challenge-rules` skill (hard rules, deadlines) in `.claude/skills/`.
-
 # Project: Overnight vs Intraday (OAF Quant Bootcamp — mini-project)
 
 ## Core Concept
